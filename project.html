@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOGO Offer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+        }
+        .offer-container {
+            width: 400px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        .offer-header {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff00ff;
+            margin-bottom: 20px;
+			display: -webkit-box;
+			width:100%;
+        }
+		.line-width{
+			width:25%;
+		}
+		.line-content-width{
+			width:40%;
+			color:#ff6b82;
+		}
+        .offer-option {
+            border: 2px solid #ccc;
+            border-radius: 0px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+        }
+        .offer-option.popular {
+            border-color: #ff0000;
+        }
+        .offer-option .badge {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background-color: #ff6b82;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .offer-option input {
+            margin-right: 10px;
+        }
+        .offer-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        .offer-price .original-price {
+            font-size: 14px;
+            color: #aaa;
+            text-decoration: line-through;
+        }
+        /*.selection {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }*/
+        .selection select {
+            padding: 5px;
+        }
+        .free-delivery {
+            color: #ff0000;
+            font-weight: bold;
+            margin-bottom: 20px;
+			display:flex;
+			justify-content:space-between;
+        }
+        .add-to-cart {
+            background-color: #ff6b82;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+			width:100%;
+        }
+        .add-to-cart:hover {
+            background-color: #e5537f;
+        }
+        .footer {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #aaa;
+			text-align:right;
+        }
+		.offer-option-1{
+			display:flex;
+			flex-direction:row;
+			justify-content:space-between;
+		}
+		.offer-option-2{
+			flex-direction:column;
+			
+		}
+		.standard-price{
+			padding-left:30px;
+			margin:0.5rem;
+		}
+		p strike{
+			margin:0px;
+			padding:0px;
+		}
+		
+		.offer-sec{
+			background-color:#ff6b82;
+			padding:5px;
+			margin:5px;
+			color:#fff;
+		}
+		.first-part{
+			display:flex;
+			flex-direction:row;
+		}
+		.second-part{
+			display:flex;
+			flex-direction:column;
+			margin-top:10px;
+			margin-bottom:10px;
+			padding:10px;
+		}
+		#size1, #color2{
+			width:100px;
+			margin-top:10px;
+			margin-bottom:10px;
+			height:40px;
+		}
+		.serial{
+			margin-top:10px;
+			margin-bottom:10px;
+			height:20px;
+		}
+		.size-text{
+			height:20px;
+		}
+		.actual-amount{
+			font-size:13px;
+			color:#d3d3d3;
+			
+			
+		}
+		.actual-amount-2{
+			margin:0px;
+		}
+		.text-one{
+			color:#ff6b82;
+		}
+		.text-two{
+			color:black;
+		}
+		.offer-details {
+            display: none;
+            margin-top: 10px;
+        }
+        .offer-details.active {
+            display: block;
+        }
+		
+    </style>
+</head>
+<body>
+    <div class="offer-container">
+        <div class="offer-header">
+		<hr class="line-width">
+		<span class="line-content-width">YAY! It's BOGO</span>
+		<hr class="line-width">
+		</div>
+
+        <div class="offer-option">
+            <div class="offer-option-1">
+				<div class="offer-option-2">
+					<label>
+					<input type="radio" name="offer" value="1" data-units="1">
+					<strong>1 Unit</strong> <span class="offer-sec">10% Off</span>
+				</label>
+				<p class="standard-price">Standard Price</p>
+				</div>
+				<div class="offer-option-2">
+					<p class="actual-amount-2">$10.00 USD </p>
+					<strike class="actual-amount">$24.00 USD</strike>
+				</div>
+			</div>
+			
+			<div class="offer-details" id="details-1">
+			<div class="first-part">
+				<div class="second-part">
+						<p class="serial">  <br></p>
+						<p class="serial">#1</p>
+						<p class="serial">#2</p>
+					
+				</div>
+				<div class="second-part">
+					<span class="size-text">Size</span>
+					<select id="size1">
+						<option>S</option>
+						<option>M</option>
+						<option>L</option>
+					</select>
+					<select id="size1">
+						<option>S</option>
+						<option>M</option>
+						<option>L</option>
+					</select>
+				</div>
+				<div class="second-part">
+					<span class="size-text">Colour</span>
+					<select id="color2">
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                    </select>
+					<select id="color2">
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                    </select>
+				</div>
+			</div>
+		</div>
+			
+        </div>
+
+
+		<div class="offer-option">
+		<div class="badge offer-option-1">MOST POPULAR</div>
+            <div class="offer-option-1 ">
+				<div class="offer-option-2">
+					<label>
+					<input type="radio" name="offer" value="2" data-units="2">
+					<strong>2 Unit</strong> <span class="offer-sec">20% Off</span>
+				</label>
+				</div>
+				<div class="offer-option-2">
+					<p class="actual-amount-2">$18.00 USD </p>
+					<strike class="actual-amount">$24.00 USD</strike>
+				</div>
+			</div>
+			<div class="offer-details" id="details-2">
+			<div class="first-part">
+				<div class="second-part">
+						<p class="serial">  <br></p>
+						<p class="serial">#1</p>
+						<p class="serial">#2</p>
+					
+				</div>
+				<div class="second-part">
+					<span class="size-text">Size</span>
+					<select id="size1">
+						<option>S</option>
+						<option>M</option>
+						<option>L</option>
+					</select>
+					<select id="size1">
+						<option>S</option>
+						<option>M</option>
+						<option>L</option>
+					</select>
+				</div>
+				<div class="second-part">
+					<span class="size-text">Colour</span>
+					<select id="color2">
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                    </select>
+					<select id="color2">
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                    </select>
+				</div>
+			</div>
+		</div>	
+        </div>
+
+
+        <div class="offer-option">
+            <div class="offer-option-1">
+				<div class="offer-option-2">
+					<label>
+					<input type="radio" name="offer" value="3" data-units="3">
+					<strong>3 Unit</strong> <span class="offer-sec">30% Off</span>
+				</label>
+
+				</div>
+				<div class="offer-option-2">
+					<p class="actual-amount-2">$24.00 USD </p>
+					<strike class="actual-amount">$24.00 USD</strike>
+				</div>
+				
+			</div>
+			
+			<div class="offer-details" id="details-3">
+			<div class="first-part">
+				<div class="second-part">
+						<p class="serial">  <br></p>
+						<p class="serial">#1</p>
+						<p class="serial">#2</p>
+					
+				</div>
+				<div class="second-part">
+					<span class="size-text">Size</span>
+					<select id="size1">
+						<option>S</option>
+						<option>M</option>
+						<option>L</option>
+					</select>
+					<select id="size1">
+						<option>S</option>
+						<option>M</option>
+						<option>L</option>
+					</select>
+				</div>
+				<div class="second-part">
+					<span class="size-text">Colour</span>
+					<select id="color2">
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                    </select>
+					<select id="color2">
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                    </select>
+				</div>
+			</div>
+		</div>
+			
+        </div>
+
+        <div class="free-delivery">
+			<span class='text-one'>Free Delivery</span>
+			<span class='text-two'>Total:$18.00USD</span>
+		</div>
+
+        <button class="add-to-cart">+ Add to Cart</button>
+
+        <div class="footer">@ Powered by Pumper</div>
+    </div>
+	
+	<script>
+        document.querySelectorAll('input[name="offer"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                const selectedUnits = this.getAttribute('data-units');
+
+                // Hide all details
+                document.querySelectorAll('.offer-details').forEach(details => {
+                    details.classList.remove('active');
+                });
+
+                // Show details for the selected unit
+                const selectedDetails = document.getElementById(`details-${selectedUnits}`);
+                if (selectedDetails) {
+                    selectedDetails.classList.add('active');
+                }
+
+            });
+        });
+    </script>
+	
+</body>
+</html>
